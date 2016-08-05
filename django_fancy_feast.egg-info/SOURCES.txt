@@ -1,0 +1,12 @@
+README.rst
+setup.py
+django_fancy_feast.egg-info/PKG-INFO
+django_fancy_feast.egg-info/SOURCES.txt
+django_fancy_feast.egg-info/dependency_links.txt
+django_fancy_feast.egg-info/top_level.txt
+fancy_feast/__init__.py
+fancy_feast/forms/__init__.py
+fancy_feast/forms/fields/__init__.py
+fancy_feast/forms/fields/fields.py
+fancy_feast/forms/widgets/__init__.py
+fancy_feast/forms/widgets/widgets.py

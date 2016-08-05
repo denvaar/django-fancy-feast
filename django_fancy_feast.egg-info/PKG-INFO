@@ -1,0 +1,39 @@
+Metadata-Version: 1.1
+Name: django-fancy-feast
+Version: 0.1
+Summary: Handy additions to Django.
+Home-page: https://www.example.com/
+Author: Denver Smith
+Author-email: denverpsmith@gmail.com
+License: BSD License
+Description: ==================
+        Django Fancy Feast
+        ==================
+        
+        Django Fancy Feast is a collection of handy things for Django.
+        
+        Quick Start
+        -----------
+        
+        1. Add 'django-fancy-feast' to your INSTALLED_APPS setting::
+        
+            INSTALLED_APPS = [
+                ...
+                'django-fancy-feast',
+            ]
+        
+        
+        
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 1.9
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
