@@ -2,49 +2,57 @@ TagField
 ====================
 
 Renders an input field that is suitable for creating multiple tags.
+To customize the appearance of this field, override these css classes:
+
+- ``.tag-styles``
+- ``.tag-input``
+- ``.tag-editor``
+- ``.tag-close``
+- ``.close-icon``
 
 Field Options
 -------------
 
-+-------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
-| Required Parameters     | Description                                                                                                                                   |
-+=========================+===============================================================================================================================================+
-|``queryset``             | A QuerySet of model objects from which the choices for the field will be derived, and which will be used to validate the user’s selection.    |
-+-------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
-|``data_attributes``      | A dictionary mapping from data attribute name to the model's field name.                                                                      |
-+-------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
++-------------------------+--------------------------------------------------------------------------+
+| Required Parameters     | Description                                                              |
++=========================+==========================================================================+
+|``model``                | The model to use.                                                        |
++-------------------------+--------------------------------------------------------------------------+
+|``field``                | Name of the model's field to use.                                        |
++-------------------------+--------------------------------------------------------------------------+
+
++-------------------------+-------------------------------------------------------------------------------------------------+
+| Optional Parameters     | Description                                                                                     |
++=========================+=================================================================================================+
+|``split_character``      | Character to use as a delimeter for separating tags internally. ``'|'`` is the default.         |
++-------------------------+-------------------------------------------------------------------------------------------------+
 
 
 Example Usage
 -------------
 
 .. code-block:: python
-
-    # models.py
-    class Color(models.Model):
-        name = models.CharField(max_length=254)
-        value = models.CharField(max_length=254)
-        opacity = models.DecimalField()
-
-        def __str__(self):
-            return self.name
-
-.. code-block:: python
     
     # forms.py 
     from fancy_feast.forms.fields import TagField
     
-    class ExampleForm(forms.Form):
-        tags = TagField(Tag,
-
-The result would be a select field like this:
-
-.. code-block:: html
+    # Assuming this model exists:
+    # class Tag(models.Model):
+    #     name = models.CharField(max_length=254)
+    #     
+    #     def __str__(self):
+    #         return self.name
     
-    <select id="id_icon_color" name="icon_color">
-        <option value="" selected="selected">---------</option>
-        <option data-color="#53DF83" data-opacity="0.5" value="1">Happy Green</option>
-        <option data-color="#47D2E9" data-opacity="0.9" value="2">Flyby</option>
-        <option data-color="#EEEEEE" data-opacity="1.0" value="3">Concrete</option>
-        <option data-color="#3F3F3F" data-opacity="0.1" value="4">The Dark Side</option>
-    </select>
+    class ExampleForm(forms.ModelForm):
+        tags = TagField(model=Tag, field='name')
+        
+        def save(self):
+            obj = super(ExampleForm, self).save(commit=False)
+            obj.save()
+            [obj.tags.add(t) for t in self.cleaned_data.get('tags')]
+            self.save_m2m()
+            return obj
+
+.. image:: https://cloud.githubusercontent.com/assets/10538978/17461055/b8ad4a16-5c3b-11e6-95aa-b9973805dd77.gif
+
+
