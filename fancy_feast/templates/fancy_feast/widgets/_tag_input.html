@@ -79,7 +79,7 @@
       if (newTags.indexOf(event.target.value) < 0) {
         newTags.push(event.target.value);
         buildTag(event.target.value, document.getElementById("editor"));
-        document.getElementById("{{ id }}").value += event.target.value + "|";
+        document.getElementById("{{ id }}").value += event.target.value + "{{ split_character }}";
         event.target.value = "";
       }
       setPlaceholder(event.target);
@@ -102,20 +102,20 @@
   
   function removeTag(event) {
     var tagInput = document.getElementById("{{ id }}");
-    var tags = tagInput.value.split("|");
+    var tags = tagInput.value.split("{{ split_character }}");
     var clickedTag = event.target.parentNode;
     var index = tags.indexOf(clickedTag.dataset.name);
     
     if (index > -1) {
       tags.splice(index, 1);
-      tagInput.value = tags.join("|");
+      tagInput.value = tags.join("{{ split_character }}");
       disposeTag(clickedTag);
     }
     setPlaceholder(document.getElementById("editor_input"));
   };
 
   function setPlaceholder(element) {
-    if (document.getElementById("{{ id }}").value.includes("|")) {
+    if (document.getElementById("{{ id }}").value.includes("{{ split_character }}")) {
       element.placeholder = "";
     } else {
       element.placeholder = "{{ placeholder }}";
@@ -135,7 +135,7 @@
       event.target.value = lastTag.dataset.name;
       var tagString = document.getElementById("{{ id }}").value;
       tagString.replace(lastTag.dataset.name, "");
-      document.getElementById("{{ id }}").value = tagString.replace(lastTag.dataset.name + "|", "");
+      document.getElementById("{{ id }}").value = tagString.replace(lastTag.dataset.name + "{{ split_character }}", "");
       document.getElementById("editor").removeChild(lastTag);
       setPlaceholder(event.target);
       event.preventDefault();
