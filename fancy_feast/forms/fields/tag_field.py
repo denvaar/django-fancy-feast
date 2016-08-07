@@ -8,9 +8,6 @@ class TagField(CharField):
     def __init__(self, model, field, split_character='|',
                  max_length=None, min_length=None,
                  strip=True, *args, **kwargs):
-        #self.max_length = max_length
-        #self.min_length = min_length
-        #self.strip = strip
         self.model = model
         self.field = field
         self.split_character = split_character

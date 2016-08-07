@@ -1,2 +1,3 @@
 recursive-include fancy_feast/templates *
+recursive-include fancy_feast/static *
 

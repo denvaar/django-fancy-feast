@@ -6,6 +6,11 @@ from django.template.loader import render_to_string
 class TagInput(TextInput):
     template_name = 'fancy_feast/widgets/_tag_input.html'
 
+    class Media:
+        css = {
+            'all': ('fancy_feast/css/styles.css',)
+        }
+
     def __init__(self, split_character, *args, **kwargs):
         self.split_character = split_character
         super(TagInput, self).__init__(*args, **kwargs)
