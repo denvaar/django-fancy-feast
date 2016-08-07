@@ -23,17 +23,6 @@ Example Usage
 -------------
 
 .. code-block:: python
-
-    # models.py
-    class Color(models.Model):
-        name = models.CharField(max_length=254)
-        value = models.CharField(max_length=254)
-        opacity = models.DecimalField()
-
-        def __str__(self):
-            return self.name
-
-.. code-block:: python
     
     # forms.py 
     from fancy_feast.forms.fields import DataModelChoiceField
