@@ -43,8 +43,15 @@ Example Usage
     #     def __str__(self):
     #         return self.name
     
-    class ExampleForm(forms.Form):
+    class ExampleForm(forms.ModelForm):
         tags = TagField(model=Tag, field='name')
+        
+        def save(self):
+            obj = super(ExampleForm, self).save(commit=False)
+            obj.save()
+            [obj.tags.add(t) for t in self.cleaned_data.get('tags')]
+            self.save_m2m()
+            return obj
 
 .. image:: https://cloud.githubusercontent.com/assets/10538978/17461055/b8ad4a16-5c3b-11e6-95aa-b9973805dd77.gif
 
