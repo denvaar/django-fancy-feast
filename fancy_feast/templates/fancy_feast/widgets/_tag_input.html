@@ -1,0 +1,146 @@
+{% load staticfiles %}
+
+<style>
+  .hidden {
+    display: none !important;
+  }
+  .tag-styles {
+    padding-top: 0px;
+    padding-right: 9px;
+    bottom: 1px;
+    padding-bottom: 1px;
+    padding-left: 4px;
+    font-size: 11px;
+    font-weight: bold;
+    background-color: #58a2ee;
+    color: #ECECEC;
+    margin-right: 2px;
+    border-radius: 2px;
+    cursor: default;
+    position: relative;
+    text-align: left; 
+  }
+  .tag-input {
+    -webkit-appearance: textarea;
+    font-size: 11px;
+    position: relative;
+    outline: none !important;
+    border: none !important;
+    display: table-cell;
+    width: 100%;
+  }
+  .tag-editor {
+    border: 1px solid #ccc;
+    padding-left: 2px;
+    padding-right: 2px;
+    height: 19px;
+    font-family: BlinkMacSystemFont, sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 400px;
+    display: table;
+  }
+  .tag-close {
+    cursor: pointer;
+    position: relative;
+    top: -1px;
+    right: -5px;
+    font-size: 15px;
+  }
+  .close-icon::after {
+    content: "⨯";
+    color: "#ffd291";
+  }
+</style>
+
+<div id="editor" class="tag-editor">
+  <input id="editor_input"
+         type="text"
+         class="tag-input"
+         autocomplete="off"
+         placeholder="{{ placeholder }}"/>
+</div>
+<span class="hidden">{{ input }}</span>
+
+<script>
+
+  window.onload = function() {
+    document.getElementById("editor_input").onkeypress = handleInput;
+    document.getElementById("editor_input").onkeydown = handleKeyPress;
+  }
+
+  function handleInput(event) {
+    
+    if ((event.keyCode == 9 || event.keyCode == 13) && event.target.value.length > 0) { // Tab key
+      
+      var newTags = [];
+      event.preventDefault();
+      
+      if (newTags.indexOf(event.target.value) < 0) {
+        newTags.push(event.target.value);
+        buildTag(event.target.value, document.getElementById("editor"));
+        document.getElementById("{{ id }}").value += event.target.value + "|";
+        event.target.value = "";
+      }
+      setPlaceholder(event.target);
+    }
+  };
+  
+  function buildTag(value, parent) {
+    var newSpan = document.createElement('span');
+    var tagClose = document.createElement('i');
+    tagClose.addEventListener("click", removeTag, false);
+    
+    newSpan.innerHTML = value;
+    newSpan.dataset.name = value;
+    newSpan.className += "tag-styles";
+    parent.insertBefore(newSpan, document.getElementById("editor_input"));
+    tagClose.className += "close-icon tag-close";
+    newSpan.appendChild(tagClose);
+
+  };
+  
+  function removeTag(event) {
+    var tagInput = document.getElementById("{{ id }}");
+    var tags = tagInput.value.split("|");
+    var clickedTag = event.target.parentNode;
+    var index = tags.indexOf(clickedTag.dataset.name);
+    
+    if (index > -1) {
+      tags.splice(index, 1);
+      tagInput.value = tags.join("|");
+      disposeTag(clickedTag);
+    }
+    setPlaceholder(document.getElementById("editor_input"));
+  };
+
+  function setPlaceholder(element) {
+    if (document.getElementById("{{ id }}").value.includes("|")) {
+      element.placeholder = "";
+    } else {
+      element.placeholder = "{{ placeholder }}";
+    }
+  };
+
+  function disposeTag(element) {
+    element.removeEventListener("click", removeTag);
+    element.parentNode.removeChild(element);
+  };
+
+  function handleKeyPress(event) {
+
+    if (event.keyCode == 8 && event.target.value.length == 0) { // Delete key
+      var children = document.getElementById("editor").childNodes;
+      var lastTag = children[children.length - 3];
+      event.target.value = lastTag.dataset.name;
+      var tagString = document.getElementById("{{ id }}").value;
+      tagString.replace(lastTag.dataset.name, "");
+      document.getElementById("{{ id }}").value = tagString.replace(lastTag.dataset.name + "|", "");
+      document.getElementById("editor").removeChild(lastTag);
+      setPlaceholder(event.target);
+      event.preventDefault();
+    }
+
+  };
+  
+</script>
