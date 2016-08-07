@@ -38,6 +38,15 @@ Example Usage
     # forms.py 
     from fancy_feast.forms.fields import DataModelChoiceField
     
+    # Assuming this model:
+    # class Color(models.Model):
+    #     name = models.CharField(max_length=254)
+    #     value = models.CharField(max_length=254)
+    #     opacity = models.DecimalField()
+    # 
+    #     def __str__(self):
+    #         return self.name
+    
     class ExampleForm(forms.Form):
         icon_color = DataModelChoiceField(queryset=Color.objects.all(),
                                           data_attributes={'color':'value',
