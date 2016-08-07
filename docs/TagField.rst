@@ -2,6 +2,13 @@ TagField
 ====================
 
 Renders an input field that is suitable for creating multiple tags.
+To customize the appearance of this field, override these css classes:
+
+- ``.tag-styles``
+- ``.tag-input``
+- ``.tag-editor``
+- ``.tag-close``
+- ``.close-icon``
 
 Field Options
 -------------
@@ -25,18 +32,16 @@ Example Usage
 -------------
 
 .. code-block:: python
-
-    # models.py
-    class Tag(models.Model):
-        name = models.CharField(max_length=254)
-
-        def __str__(self):
-            return self.name
-
-.. code-block:: python
     
     # forms.py 
     from fancy_feast.forms.fields import TagField
+    
+    # Assuming this model exists:
+    # class Tag(models.Model):
+    #     name = models.CharField(max_length=254)
+    #     
+    #     def __str__(self):
+    #         return self.name
     
     class ExampleForm(forms.Form):
         tags = TagField(model=Tag, field='name')
