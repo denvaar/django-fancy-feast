@@ -1,8 +1,8 @@
 TagField
 ====================
 
-Renders an input field that is suitable for creating multiple tags.
-To customize the appearance of this field, override these css classes:
+Renders an input field that is suitable for creating multiple tags. This field is designed to replace the default form field used for many-to-many relationships.
+The appearance of this field is controlled by these CSS classes:
 
 - ``.tag-styles``
 - ``.tag-input``
@@ -42,9 +42,19 @@ Example Usage
     #     
     #     def __str__(self):
     #         return self.name
+    #
+    # class ExampleModel(models.Model):
+    #     title = models.CharField(max_length=254)
+    #     tags = models.ManyToManyField(Tag, blank=True)
+    #     ...
+    #
     
     class ExampleForm(forms.ModelForm):
         tags = TagField(model=Tag, field='name')
+        
+        class Meta:
+            model = ExampleModel
+            fields = ('title', 'tags',)
         
         def save(self):
             obj = super(ExampleForm, self).save(commit=False)
