@@ -1,4 +1,5 @@
 from django.forms import CharField
+from django.utils import six
 
 from fancy_feast.forms.widgets import TagInput
 

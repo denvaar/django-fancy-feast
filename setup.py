@@ -9,18 +9,19 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='django-fancy-feast',
-    version='0.1',
+    version='0.2',
     packages=find_packages(),
     include_package_data=True,
     license='BSD License',
-    description='Handy additions to Django.',
+    description='Additional form fields for Django.',
     long_description=README,
-    url='https://www.example.com/',
+    url='https://github.com/denvaar/django-fancy-feast',
     author='Denver Smith',
     author_email='denverpsmith@gmail.com',
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',
+        'Framework :: Django :: 1.8',
         'Framework :: Django :: 1.9',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',  # example license
