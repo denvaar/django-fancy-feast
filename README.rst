@@ -7,7 +7,7 @@ A collection of additional form fields for Django.
 Requirements
 ------------
 - python3
-- django
+- django 1.8 or higher
 
 Quick Start
 -----------
