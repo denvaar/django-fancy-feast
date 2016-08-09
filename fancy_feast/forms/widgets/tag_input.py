@@ -16,10 +16,6 @@ class TagInput(TextInput):
         super(TagInput, self).__init__(*args, **kwargs)
 
     def render(self, name, value, attrs=None):
-        if 'class' in attrs:
-            attrs['class'] += ' tag-input'
-        else:
-            attrs['class'] = 'tag-input '
         context = { 
             'input': super(TagInput, self).render(name, value, attrs),
             'id': attrs['id'],

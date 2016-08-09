@@ -23,3 +23,10 @@ class TagField(CharField):
             tags.append(tag)
         return tags
 
+    def prepare_value(self, value):
+        as_string = ''
+        for tag in value:
+            as_string += '{}{}'.format(getattr(tag, self.field),
+                                       self.split_character)
+        return as_string
+

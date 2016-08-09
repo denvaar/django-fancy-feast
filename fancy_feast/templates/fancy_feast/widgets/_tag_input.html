@@ -14,6 +14,9 @@
   window.onload = function() {
     document.getElementById("editor_input").onkeypress = handleInput;
     document.getElementById("editor_input").onkeydown = handleKeyPress;
+    document.getElementById("{{ id }}").value.split("{{ split_character }}").forEach(function(tag) {
+      if (tag.length > 0) buildTag(tag, document.getElementById("editor"));
+    });
   }
 
   function handleInput(event) {
@@ -91,3 +94,4 @@
   };
   
 </script>
+
