@@ -25,8 +25,11 @@ class TagField(CharField):
 
     def prepare_value(self, value):
         as_string = ''
-        for tag in value:
-            as_string += '{}{}'.format(getattr(tag, self.field),
-                                       self.split_character)
+        if (hasattr(value, '__iter__') and
+                not isinstance(value, six.text_type) and
+                not hasattr(value, '_meta')):
+            for tag in value:
+                as_string += '{}{}'.format(getattr(tag, self.field),
+                                           self.split_character)
         return as_string
 
