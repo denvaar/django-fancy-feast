@@ -45,11 +45,12 @@ Example Usage
         positions = GroupedModelChoiceField(queryset=Position.objects.all(),
                                             group_by_field='employer')
 
-        ...
+        # ...
 
 The result would be a select field like this:
 
 .. code-block:: html
+
     <select id="id_positions" name="positions">
       <optgroup label="Employer 1">
         <option>Software Developer</option>
@@ -59,3 +60,4 @@ The result would be a select field like this:
         <option>Scuba Instructor</option>
       </optgroup>
     </select>
+    
