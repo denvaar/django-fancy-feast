@@ -22,7 +22,6 @@ Quick Start
 2. Add 'fancy_feast' to your INSTALLED_APPS setting::
 
     INSTALLED_APPS = [
-        ...
-
+        # ...
         'fancy_feast',
     ]
