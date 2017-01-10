@@ -22,11 +22,14 @@ Quick Start
         'fancy_feast',
     ]
 
-Examples
+Form Fields
 --------
 
-Just a couple things so far.
+Just a few so far.
 
 - `DataModelChoiceField <docs/DataModelChoiceField.rst>`_
+- `GroupedModelChoiceField <docs/GroupedModelChoiceField.rst>`_
+- `GroupedModelMultiChoiceField <docs/GroupedModelMultiChoiceField.rst>`_
 - `TagField <docs/TagField.rst>`_
+
 
