@@ -4,6 +4,11 @@ django-fancy-feast
 
 A collection of additional form fields for Django.
 
+- `DataModelChoiceField <docs/DataModelChoiceField.rst>`_
+- `GroupedModelChoiceField <docs/GroupedModelChoiceField.rst>`_
+- `GroupedModelMultiChoiceField <docs/GroupedModelMultiChoiceField.rst>`_
+- `TagField <docs/TagField.rst>`_
+
 Requirements
 ------------
 - python3
@@ -21,15 +26,3 @@ Quick Start
 
         'fancy_feast',
     ]
-
-Form Fields
---------
-
-Just a few so far.
-
-- `DataModelChoiceField <docs/DataModelChoiceField.rst>`_
-- `GroupedModelChoiceField <docs/GroupedModelChoiceField.rst>`_
-- `GroupedModelMultiChoiceField <docs/GroupedModelMultiChoiceField.rst>`_
-- `TagField <docs/TagField.rst>`_
-
-
