@@ -11,15 +11,16 @@ Field Options
 +-------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
 | Required Parameters     | Description                                                                                                                                   |
 +=========================+===============================================================================================================================================+
-|``queryset``             | A QuerySet of model objects from which the choices for the field will be derived, and which will be used to validate the user’s selection.    |
+| ``queryset``            | A QuerySet of model objects from which the choices for the field will be derived, and which will be used to validate the user’s selection.    |
 +-------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
-|``group_by_field``      | The name of a field on the model to use as an optgroup                                                                      |
+| ``group_by_field``      | The name of a field on the model to use as an optgroup                                                                                        |
 +-------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+
 
 +-------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
 | Optional Parameters     | Description                                                                                                                                   |
 +=========================+===============================================================================================================================================+
-|``group_by_label``       | A function that will return a label for each optgroup. |
+|``group_by_label``       | A function that will return a label for each optgroup.                                                                                        |
 +-------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
 
 You may also use the traditional args and kwargs from Django's ``ModelChoiceField``.
