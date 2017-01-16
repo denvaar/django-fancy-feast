@@ -29,6 +29,7 @@ class TagField(CharField):
         if (hasattr(value, '__iter__') and
                 not isinstance(value, six.text_type) and
                 not hasattr(value, '_meta')):
+            print(value)
             for tag in value:
                 as_string += '{}{}'.format(getattr(self.model, self.field),
                                            self.split_character)
