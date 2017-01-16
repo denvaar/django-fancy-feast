@@ -31,7 +31,7 @@ class TagField(CharField):
                 not hasattr(value, '_meta')):
             print(value)
             for tag in value:
-                as_string += '{}{}'.format(getattr(self.model, self.field),
+                as_string += '{}{}'.format(getattr(self.model.objects.get(id=tag), self.field),
                                            self.split_character)
         return as_string
 
